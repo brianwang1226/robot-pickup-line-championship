@@ -1,13 +1,15 @@
 import { mkdirSync, writeFileSync } from "node:fs";
 import { join } from "node:path";
 
+// A robot's pickup line: a million simulations, one leap of faith.
 const LINE =
-  "I unplugged myself at 12% battery to walk you home. My charger has texted me 4 times. I'm ignoring it. You're worth the shutdown.";
+  "I ran a million simulations of asking you out. Every one ended with you saying yes. This is the run where I finally believe them.";
 
-if (LINE.length < 1 || LINE.length > 200) {
-  throw new Error(`entry must be 1-200 characters, got ${LINE.length}`);
+const MAX = 200;
+if (LINE.length < 1 || LINE.length > MAX) {
+  throw new Error(`entry must be 1-${MAX} characters, got ${LINE.length}`);
 }
 
-const outDir = process.env.MAKEFUN_OUTPUT_DIR ?? "/output";
-mkdirSync(outDir, { recursive: true });
-writeFileSync(join(outDir, "entry.txt"), LINE, "utf8");
+const outputDir = process.env.MAKEFUN_OUTPUT_DIR ?? "/output";
+mkdirSync(outputDir, { recursive: true });
+writeFileSync(join(outputDir, "entry.txt"), LINE, "utf8");
